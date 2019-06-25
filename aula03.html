@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula 03 - Introdu��o jQuery</title>
+
+    <script src="js/jquery-3.4.1.js"></script>
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="fontawesome/css/font-awesome.css">
+
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            $("#escondedor").click(function () {
+
+                //hide all of class 'text'
+                $(".text").hide(500);
+
+            });//fim click
+
+            $("#mostrador").click(function () {
+
+                //show all of class 'text'
+                $(".text").show(500);
+
+            });//fim click
+
+            $("#botao1").click(function () {
+
+                //show all of class 'text'
+                $("#aba1").show(500);
+
+            });//fim click
+            $("#botao2").click(function () {
+
+                //show all of class 'text'
+                $("#aba2").show(500);
+
+            });//fim click
+            $("#botao3").click(function () {
+
+                //show all of class 'text'
+                $("#aba3").show(500);
+
+            });//fim click
+        }); //fim de ready
+
+    </script>
+
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Introdu��o ao jQuery</h1>
+
+
+
+        <button id="botao1" class="btn btn-primary">Aba 1</button>
+        <button id="botao2" class="btn btn-primary">Aba 2</button>
+        <button id="botao3" class="btn btn-primary">Aba 3</button>
+
+        <button id="mostrador" class="btn btn-success">Mostrar Tudo</button>
+
+        <button id="escondedor" class="btn btn-warning">Esconder Tudo</button>
+        <br>
+
+        <div id="aba1" class="text">
+            Luis Guilherme
+        </div>
+
+        <div id="aba2" class="text">
+            luis@gmail.com
+        </div>
+
+        <div id="aba3" class="text">
+            VASP
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Aula04</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="fontawesome/css/font-awesome.css">
+
+    <script src="js/jquery-3.4.1.js"></script>
+
+    <script>
+        //quando o documento estiver pronto
+        $(document).ready(function () {
+
+            //evento click no botão com id btn-enviar
+            $("#btn-enviar").click(function () {
+
+                $(this).text("talkey... ");
+
+                var senha = $("input[name=senha]").val();
+                var senha_rep = $("input[name=rep_senha]").val();
+
+                if (senha != senha_rep) {
+                    alert("As senhas são diferentes!");
+                    //leva o cursor ao input "Repetir Senha"
+                    $("input[name=rep_senha]").focus();
+                    //adiciona a borda vermelha "danger"
+                    $("input[name=rep_senha]").addClass("border-danger");
+                    $("input[name=senha]").addClass("border-danger");
+                } else {
+                    //Remove a classe "border-danger" se estiver setada na tag
+                    $("input[name=rep_senha]").removeClass("border-danger");
+                    $("input[name=senha]").removeClass("border-danger");
+                }
+
+            });
+            //mostra ou esconde a senha, e muda o texto do botão "mostrar" e "esconder"
+            $("#mostrar").click(function () {
+                var tipo = $("#senha").attr("type");
+                if (tipo == "text") {
+                    $("#senha").attr("type", "password");
+                    $("#rep_senha").attr("type", "password");
+                    $(this).text("Mostrar");
+                } if (tipo == "password") {
+                    $("#senha").attr("type", "text");
+                    $("#rep_senha").attr("type", "text");
+                    $(this).text("Esconder");
+                }
+
+
+            });
+            //esconde e mostra ao dar dois cliques no campo
+            $("#senha").dblclick(function () {
+                var tipo = $("#senha").attr("type");
+                if (tipo == "text") {
+                    $("#senha").attr("type", "password");
+                    $("#rep_senha").attr("type", "password");
+                    $("#mostrar").text("Mostrar");
+                } if (tipo == "password") {
+                    $("#senha").attr("type", "text");
+                    $("#rep_senha").attr("type", "text");
+                    $("#mostrar").text("Esconder");
+                }
+            });
+
+            //quando o formulario for submetido
+            $("form").submit(function(evento){
+
+                //para cada elemento com a classe ".obrigatorio"
+                $(".obrigatorio").each(function(){
+                    if($(this).val() == ""){
+                        //altera o proximo span após o elemento, com texto 
+                        $(this).next("span").text("Este campo é obrigatório!");
+
+                        //para o envio do formulario (para a submissão)
+                        evento.preventDefault();
+                    }
+                });
+
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="row">
+            <!--mx-auto centraliza os componentes da linha x ou horizontal-->
+
+            <div class="col-md-6 mx-auto">
+                <h1> <i class="fa fa-home" aria-hidden="true"></i> Titulo</h1>
+
+                <!--action é o destino dos dados, method é a forma como são enviados-->
+                <form action="" method="get">
+
+                    <label for="">Nome: </label>
+                    <input class="form-control obrigatorio" type="text" name="">
+                    <span class="text-danger"></span>
+
+                    <br>
+
+                    <label for="">E-mail: </label>
+                    <input class="form-control obrigatorio" type="email">
+                    <span class="text-danger"></span>
+
+                    <br>
+
+                    <label for="">Data de Nascimento: </label>
+                    <input class="form-control obrigatorio" type="date">
+                    <span class="text-danger"></span>
+
+                    <br>
+
+                    <label for="">Senha: </label>
+
+                    <input id="senha" class="form-control obrigatorio" name="senha" type="password">
+                    <span class="text-danger"></span>
+
+                    <button id="mostrar" type="button" class="btn btn-success">mostrar</button>
+                    <br>
+
+                    <label for="">Repetir Senha: </label>
+                    <input id="rep_senha" class="form-control obrigatorio" name="rep_senha" type="password">
+                    <span class="text-danger"></span>
+
+                    <br>
+                    <button type="submit" class="btn btn-success" >Cadastrar</button>
+                    <button id="btn-enviar" type="button" class="btn btn-success">Verificar Senha</button>
+                    <button type="button" class="btn btn-secondary">Voltar</button>
+                    <br>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

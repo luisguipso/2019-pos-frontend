@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EXE10</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+    <script src="js/jquery-3.4.1.js"></script>
+
+
+    <script>
+
+        $(document).ready(function () {
+            $("#1").click(function () {
+
+                var value = $("#busca").val().toLowerCase();
+                $("#tabela tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+            $("#2").click(function(){
+                $("#tabela tr").show();
+            });
+        });
+
+        
+
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md">
+
+                <table id="tabela" style="width:100%">
+                    <tr id="l1">
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Age</th>
+                    </tr>
+                    <tr id="l2">
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>
+                    <tr id="l3">
+                        <td>Eve</td>
+                        <td>Jackson</td>
+                        <td>94</td>
+                    </tr>
+                </table>
+                <input id="busca" type="text">
+                <button id="1">botao1</button>
+                <button id="2">botao2</button>
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EXE07</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+    <script src="js/jquery-3.4.1.js"></script>
+
+
+    <script>
+
+        $(document).ready(function(){
+        $("#botao1").click(function() {
+        const texto = $("#nome_usuario").val();
+        var array = texto.split(';');
+        for (var item of array) {
+        $('ul').append("<li>"+item+"</li>");
+        }
+
+        });
+
+        });
+
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <input id="nome_usuario" class="" name="nome" type="text" />
+        <button id="botao1" class="btn btn-primary ">validar</button>
+
+        <div>
+            <ul>
+
+            </ul>
+        </div>
+
+
+
+
+    </div>
+
+
+
+</body>
+
+</html>

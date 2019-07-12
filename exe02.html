@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>EXE02</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="fontawesome/css/font-awesome.css">
+
+    <script src="js/jquery-3.4.1.js"></script>
+
+    <script>
+        //quando o documento estiver pronto
+        $(document).ready(function () {
+            
+            //-----1
+            //a, c
+            $("#button1").click(function () {
+                var texto =$("#campo").val();
+                if(texto != ""){
+                   alert("Bem vindo "+texto);
+                    $("#boasvindas").html("Bem Vindo " + texto);
+                }
+
+                 
+                
+            });
+
+
+        });
+
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="row">
+            <!--mx-auto centraliza os componentes da linha x ou horizontal-->
+
+            <div class="col-md-6 mx-auto">
+                <span>Nome:</span>
+                <input id="campo" type="text">
+                <br>
+                <button id="button1">Botão1</button>
+                
+                <div id="boasvindas">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

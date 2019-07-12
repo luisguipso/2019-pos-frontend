@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!--Exercicio 01-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>EXE08</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style media="screen">
+        .pequena {
+            width: 200px;
+            height: 130px;
+        }
+
+        .grande {
+            width: 800px;
+            height: 520px;
+        }
+    </style>
+</head>
+<!--Corpo-->
+
+<body>
+
+
+    <div id="002" class="galeria container-fluid">
+        <div class="col-md-12">
+
+            <img id="sp" val="1" class="grande" src="https://i.imgur.com/c3FBT9C.jpg" alt="grande">
+        </div>
+
+        <div class="col-md-6">
+
+            <img id="1" val="1" class="pequena" id="velhos" src="https://i.imgur.com/c3FBT9C.jpg" alt="idosos">
+            <img id="2" val="2" class="pequena" id="tempestades" src="https://i.imgur.com/pBrJ8x9.jpg" alt="tempestades">
+            <img id="3" val="3" class="pequena" id="batma" src="https://i.imgur.com/eyhRbDg.jpg" alt="bolo do batman">
+            <img id="4" val="4" class="pequena" id="mith" src="https://i.imgur.com/1HhQOB9.png" alt="o mito">
+            <img id="5" val="5" class="pequena" id="batma" src="https://i.imgur.com/Ktwu05G.jpg" alt="moeda">
+
+
+
+        </div>
+        <div class="col-md-12">
+            <button id="ant" class="btn btn-light" type="button" name="anterior">&lsaquo;-- Anterior</button>
+            <button id="pro" class="btn btn-light" type="button" name="proximo">Proximo --&rsaquo;</button>
+        </div>
+    </div>
+
+
+
+
+</body>
+
+<!--JQuery-->
+<script type="text/javascript">
+    valor = 0;
+
+
+    //funcao das imagens
+    //usar val pra controlar a ordenação do botao (usar switch case)
+    $(document).ready(function () {
+        $(".pequena").click(function () {
+            var src = $(this).attr('src');
+            var val = $(this).attr('val');
+            $(".grande").attr("src", src);
+            $(".grande").attr("val", val);
+        });
+        var count = 1;
+        $("#pro").click(function () {
+
+            if (count >= 1 && count <= 4) {
+                count++;
+            } else if (count == 5) {
+                count = 1;
+            }
+
+            trocaImagem();
+        });
+        $("#ant").click(function () {
+
+            if (count >= 2 && count <= 5) {
+                count--;
+            } else if (count == 1) {
+                count = 5;
+            }
+
+            trocaImagem();
+        });
+        function trocaImagem() {
+            switch (count) {
+                case 1:
+                    var src = $("#1").attr('src');
+                    $(".grande").attr("src", src);
+                    break;
+                case 2:
+                    var src = $("#2").attr('src');
+                    $(".grande").attr("src", src);
+                    break;
+                case 3:
+                    var src = $("#3").attr('src');
+                    $(".grande").attr("src", src);
+                    break;
+                case 4:
+                    var src = $("#4").attr('src');
+                    $(".grande").attr("src", src);
+                    break;
+                case 5:
+                    var src = $("#5").attr('src');
+                    $(".grande").attr("src", src);
+                    break;
+            }
+        };
+
+        var countDiv = 0;
+       
+
+
+    });
+
+
+
+</script>
+
+</html>

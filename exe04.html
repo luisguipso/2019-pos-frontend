@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>EXE04</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="fontawesome/css/font-awesome.css">
+
+    <script src="js/jquery-3.4.1.js"></script>
+
+    <script>
+        //quando o documento estiver pronto
+        $(document).ready(function () {
+
+            //-----1
+            //a, c
+            function somar(){
+                var val1 = $("#campo").val();
+                var val2 = $("#campo2").val();
+                var result;
+                result = parseFloat(val1) + parseFloat(val2);
+
+                $("#campo3").val(result);
+
+            };
+            function subtrair() {
+                var val1 = $("#campo").val();
+                var val2 = $("#campo2").val();
+                var result;
+                result = parseFloat(val1) - parseFloat(val2);
+                $("#campo3").val(result);
+
+            };
+            function multiplicar() {
+                var val1 = $("#campo").val();
+                var val2 = $("#campo2").val();
+                var result;
+                result = parseFloat(val1) * parseFloat(val2);
+                $("#campo3").val(result);
+
+            };
+            function dividir() {
+                var val1 = $("#campo").val();
+                var val2 = $("#campo2").val();
+                var result;
+                result = parseFloat(val1) / parseFloat(val2);
+                $("#campo3").val(result);
+
+            };
+
+
+            //botoes
+            $("#soma").click(function () {
+                somar();
+            });
+            $("#subtrai").click(function () {
+                subtrair();
+            });
+            $("#multiplica").click(function () {
+                multiplicar();
+            });
+            $("#divide").click(function () {
+                dividir();
+            });
+            
+            //option
+
+            $("#operacoes").change(function(){
+               var op = $(this).val();
+               if(op == "+"){
+                somar();
+               } if (op == "-") {
+                   subtrair();
+                } if (op == "*") {
+                    multiplicar();
+                } if (op == "/") {
+                    dividir();
+                }
+            });
+
+            //radio
+            $("#rsoma").click(function () {
+                somar();
+            });
+            $("#rsubtrai").click(function () {
+                subtrair();
+            });
+            $("#rmultiplica").click(function () {
+                multiplicar();
+            });
+            $("#rdivide").click(function () {
+                dividir();
+            });
+            
+
+
+        });
+
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="row">
+            <!--mx-auto centraliza os componentes da linha x ou horizontal-->
+
+            <div class="col-md-6 mx-auto">
+                <span>1</span>
+                <input id="campo" type="text">
+                <br>
+                <span>2</span>
+                <input id="campo2" type="text">
+                <br>
+                <span>resultado:</span>
+                <input id="campo3" type="text">
+                <br>
+                <button id="soma">+</button>
+                <button id="subtrai">-</button>
+                <button id="multiplica">*</button>
+                <button id="divide">/</button>
+
+                <br>
+
+                <select name="operacoes" id="operacoes">
+                    <option value="+">soma</option>     
+                    <option value="-">subtrai</option>
+                    <option value="*">multiplica</option>
+                    <option value="/">divide</option>
+                </select>
+
+                <br>
+                <input id="rsoma" name="so" type="radio">soma</input>
+                <br>
+                <input id="rsubtrai" name="su" type="radio">subtrai</input>
+                <br>
+                <input id="rmultiplica" name="mu" type="radio">multiplica</input>
+                <br>
+                <input id="rdivide" name="di" type="radio">divide</input>
+                <br>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

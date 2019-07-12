@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--Exercicio 01-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>EXE06</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+</head>
+<!--Corpo-->
+
+<body>
+    <div id="001" class="lampada col-md-12">
+        <img id="lampada" src="http://i.stack.imgur.com/b983w.jpg" alt="LampApagada">
+    </div>
+    <div class="nada">
+
+    </div>
+
+
+</body>
+
+<!--JQuery-->
+<script type="text/javascript">
+    valor = 0;
+
+    //funcao do mouse (quando fora)
+    $("#lampada").hover(function () {
+        //funcao do click
+        $("#lampada").on("click", function () {
+            $(this).attr("src", "http://i.stack.imgur.com/MRjsF.jpg");
+            valor = 1;
+        });
+
+        //funcao que muda pra lampada acesa
+        if (valor == 0)
+            $(this).attr("src", "http://i.stack.imgur.com/ybxlO.jpg");
+
+    }, //função pra quando entra o mouse
+        function () {
+            //funcao que muda o atributo pra apagado
+            if (valor == 0)
+                $(this).attr("src", "http://i.stack.imgur.com/b983w.jpg");
+        });
+
+
+
+
+
+</script>
+
+</html>

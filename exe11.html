@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EXE11</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+    <script src="js/jquery-3.4.1.js"></script>
+
+
+    <script>
+
+        $(document).ready(function () {
+            $("#select").change(function () {
+                var valor_select;
+                valor_select = $("#select").val();
+                if(valor_select == "Professor"){
+                    $("#siape").show();
+                    $("#data").show();
+                    $("#senha").show();
+
+                    $("#ra").hide();
+                }
+                else {
+                    $("#ra").show();
+                    $("#senha").show();
+
+                    $("#siape").hide();
+                    $("#data").hide();
+                }
+            });
+
+            $("#aplicar").click(function () {
+
+                    
+
+                    var nome = $("#nome").val();
+                    var profissao = $("#select").val();
+                    var numero;
+
+                    if(profissao == "Professor"){
+                        numero = $("#siape_in").val() + " (SIAPE)";
+                    }else{
+                        numero = $("#ra_in").val() + " (RA)";
+                    }
+                    var newRow = '<tr> <td>' + nome + '</td> <td>' + profissao + '</td> <td>' + numero + '</td> </tr>';
+
+                   
+                    $("#tabela").append(newRow);
+                    $('#formulario input').val("");
+            });
+
+            
+        });
+
+
+
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+            <form id="formulario">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nome</label>
+                    <input id="nome" type="text" class="form-control" 
+                        placeholder="Digite o Nome">
+                </div>
+                <div class="form-group" >
+                    <label for="exampleInputEmail1">Email</label>
+                    <input id="email"  type="email" class="form-control"  
+                        placeholder="digite o Email">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Profissão</label>
+                    <select class="form-control" id="select">
+                        <option>Selecione...</option>
+                        <option>Professor</option>
+                        <option>Estudante</option>
+                        
+                    </select>
+                </div>
+                <div id="ra" class="form-group" style="display:none">
+                    <label for="exampleInputEmail1">RA</label>
+                    <input id="ra_in" type="text" class="form-control"  
+                        placeholder="Digite o RA">
+                </div>
+                
+                <div id="siape" class="form-group" style="display:none">
+                    <label for="exampleInputEmail1">Siape</label>
+                    <input id="siape_in" type="text" class="form-control"  
+                        placeholder="Digite o Siape">
+                </div>
+                <div id="data" class="form-group" style="display:none">
+                    <label for="exampleInputEmail1">Data de ingresso</label>
+                    <input type="text" class="form-control"  
+                        placeholder="Digite a Data de ingresso">
+                </div>
+                <div id="senha" class="form-group" style="display:none">
+                    <label for="exampleInputEmail1">Senha</label>
+                    <input type="text" class="form-control"  
+                        placeholder="Digite a Senha">
+                </div>
+                
+
+                <button id="aplicar" type="button"  class="btn btn-primary">Aplicar</button>
+            </form>
+
+
+            </div>
+
+            <div class="col-md">
+                <table id="tabela" class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Profissão</th>
+                            <th scope="col">Numero</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+
+
+</body>
+
+</html>

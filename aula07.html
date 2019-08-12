@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--Exercicio 01-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>EXE06</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="fontawesome/css/font-awesome.css">
+
+</head>
+<!--Corpo-->
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto p-4">
+    
+                <h3 class="border-bottom border-dark">
+                    Consulta de clientes com Ajax e jQuery
+                </h3>
+    
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-8 mx-auto px-4">
+    
+                <form action="">
+    
+                    <div>
+                        <label for="">Nome:</label>
+                        <input type="text" id="nome" class="form-control">
+                    </div>
+    
+                    <br>
+    
+                    <button type="button" class="btn btn-primary">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        Pesquisar
+                    </button>
+    
+                </form>
+    
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-8 mx-auto p-4">
+    
+                <h3 class="border-bottom border-dark">
+                    Resultado da pesquisa
+                </h3>
+    
+                <div id="resultado" class="">
+                    <i class="fa fa-search-plus" aria-hidden="true"></i>
+                    Faça uma busca para ver os resultados.
+                </div>
+    
+            </div>
+        </div>
+    
+    </div>
+
+
+</body>
+
+<!--JQuery-->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#btn-buscar").click(function(){
+            var nome = $("#nome").val();
+            var url = "localhost/" + nome;
+
+            $.getJSON(url, dados, function(dados, status){
+                if(status == "success"){
+                    alert("requisição concluida");
+                }
+            });
+        });
+    });
+
+</script>
+
+</html>

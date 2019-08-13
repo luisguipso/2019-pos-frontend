@@ -33,10 +33,25 @@
                         <label for="">Nome:</label>
                         <input type="text" id="nome" class="form-control">
                     </div>
-    
+                    <div>
+                        <label for="">CEP:</label>
+                        <input type="text" id="cep" class="form-control">
+                    </div>
+                    <div>
+                        <label for="">Logradouro:</label>
+                        <input type="text" id="logradouro" class="form-control">
+                    </div>
+                    <div>
+                        <label for="">Bairro:</label>
+                        <input type="text" id="bairro" class="form-control">
+                    </div>
+                    <div>
+                        <label for="">Cidade:</label>
+                        <input type="text" id="cidade" class="form-control">
+                    </div>    
                     <br>
     
-                    <button type="button" class="btn btn-primary">
+                    <button id="btn-buscar" type="button" class="btn btn-primary">
                         <i class="fa fa-search" aria-hidden="true"></i>
                         Pesquisar
                     </button>
@@ -69,13 +84,33 @@
 <!--JQuery-->
 <script type="text/javascript">
     $(document).ready(function(){
+        $("#cep").blur(function(){
+            var cep = $("#cep").val();
+            $.getJSON("https://viacep.com.br/ws/"+cep+"/json/?callback=?", "", function(resp, status){
+                $("#logradouro").val(resp.logradouro );
+                $("#bairro").val(resp.bairro );
+                $("#cidade").val(resp.localidade );
+                console.log(resp);
+            });
+        });
+
         $("#btn-buscar").click(function(){
             var nome = $("#nome").val();
-            var url = "localhost/" + nome;
+            var url = "http://localhost/2019-pos-frontend/aula07_json.php?nome="+ nome;
 
-            $.getJSON(url, dados, function(dados, status){
-                if(status == "success"){
-                    alert("requisição concluida");
+            var dados = "";
+
+            $.getJSON(url, dados, function(resp, status){
+
+                alert(resp);
+               
+                if(resp.erro){
+                    $("#resultado").html(resp.erro + "<br>");
+                }else {
+                    $("#resultado").html(resp.nome + "<br>");
+                    $("#resultado").append(resp.email + "<br>");
+                    $("#resultado").append(resp.telefone + "<br>");
+
                 }
             });
         });

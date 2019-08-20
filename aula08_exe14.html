@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!--Exercicio 01-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>EXE06</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="fontawesome/css/font-awesome.css">
+
+</head>
+<!--Corpo-->
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto p-4">
+
+                <h3 class="border-bottom border-dark">
+                    Consulta de clientes com Ajax e jQuery
+                </h3>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 mx-auto px-4">
+
+                <form action="">
+
+
+                    <div>
+                        <label for="">Estado:</label>
+                        <select id="estado" class="form-control">
+                            <option value="1">selecione...</option>
+                            <option value="PR">Paraná</option>
+                            <option value="SP">São Paulo</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="">Cidade:</label>
+                        <select id="cidades" class="form-control">
+                            
+                        </select>
+                    </div>
+
+                    <button id="btn-buscar" type="button" class="btn btn-primary">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        Pesquisar
+                    </button>
+
+                </form>
+
+            </div>
+            <div class="col-md-8  mx-auto px-4">
+                <table id="tabela" class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">logradouro</th>
+                            <th scope="col">bairro</th>
+                            <th scope="col">localidade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+</body>
+
+<!--JQuery-->
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+        $("#estado").change(function () {
+            jQuery('#cidades').html('');
+            var estado = $("#estado").val();
+
+            
+            
+
+                var dados = "";
+
+                $.getJSON("http://localhost/2019-pos-frontend/cidades.php?nome="+estado, "", function (resp, status) {
+                   
+
+                        $.each(resp.cidades, function (indice, item) {
+
+                            var montar = "<option>" + item.nome + "</option>";
+                            $("#cidades").append(montar);
+                        });
+                    
+
+                    
+
+                
+                });
+            
+
+
+
+        });
+    });
+
+</script>
+
+</html>

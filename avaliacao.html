@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<!--Exercicio 01-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>EXE06</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="fontawesome/css/font-awesome.css">
+
+</head>
+<!--Corpo-->
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto p-4">
+
+                <h3 class="border-bottom border-dark">
+                    Consulta de clientes com Ajax e jQuery
+                </h3>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 mx-auto px-4">
+
+                    <nav>
+                            <div class="nav  nav-tabs" id="nav-tab" role="tablist">
+                              <a class="nav-item nav-link active" id="n1" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Dados pessoais</a>
+                              <a class="nav-item nav-link" id="n2" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Escolaridade</a>
+                              <a class="nav-item nav-link" id="n3" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Experiencia</a>
+                            </div>
+                    </nav>
+                <form action="">
+
+
+                    
+                    <br>
+                    <div id="1">
+                        <h3>Dados Pessoais</h3>
+                        <label for="">Nome:*</label>
+                        <input id="nome" type="text" class="form-control obrigatorio"></input>
+                        <span class="text-danger"></span>
+                        <br>
+                        <label for="">RG:*</label>
+                        <input id="rg" type="text" class="form-control obrigatorio"></input>
+                        <span class="text-danger"></span>
+                        <br>
+                        <label for="">CPF:</label>
+                        <input id="cpf" type="text" class="form-control"></input>
+                        <br>
+                        <label for="">CEP:</label>
+                        <input id="cep" type="text" class="form-control"></input>
+                        <br>
+                        <label for="">Endereço:</label>
+                        <input id="endereco" type="text" class="form-control"></input>
+                        <br>
+                        <label for="">Cidade:</label>
+                        <input id="cidade" type="text" class="form-control"></input>
+                        <br>
+                        <label for="">Estado:</label>
+                        <input id="estado" type="text" class="form-control"></input>
+                        <br>
+                    </div>
+
+                    <div id="2">
+                        <h3>Escolaridade</h3>
+                        <label for="">Escolaridade:*</label>
+                        <input id="escolaridade" type="text" class="form-control obrigatorio"></input>
+                        <span class="text-danger"></span><br>
+                        <label for="">Local:*</label>
+                        <input id="local" type="text" class="form-control obrigatorio"></input>
+                        <span class="text-danger"></span><br>
+                        <label for="">Data de conclusao:</label>
+                        <input id="data" type="text" class="form-control"></input>
+                        <br>
+                    
+                    </div>
+
+                    <div id="3">
+                        <h3>Experiência</h3>
+                        <label for="">Função:*</label>
+                        <input id="funcao" type="text" class="form-control obrigatorio"></input>
+                        <span class="text-danger"></span><br>
+                        <label for="">Empresa:*</label>
+                        <input id="empresa" type="text" class="form-control obrigatorio"></input>
+                        <span class="text-danger"></span><br>
+                        <label for="">Data de entrada:</label>
+                        <input id="data_entrada" type="text" class="form-control"></input>
+                        <br>
+                        <label for="">Data de saída:</label>
+                        <input id="data_saida" type="text" class="form-control"></input>
+                        <br>
+
+                        <label for="">Senha: </label>
+
+                    <input id="senha" class="form-control obrigatorio" name="senha" type="password">
+                    <span class="text-danger"></span>
+
+                    <button id="mostrar" type="button" class="btn btn-success">mostrar</button>
+                    <br>
+
+                    <label for="">Repetir Senha: </label>
+                    <input id="rep_senha" class="form-control obrigatorio" name="rep_senha" type="password">
+                    <span class="text-danger"></span>
+
+
+                        <button id="salvar" type="button" class="btn btn-primary">Cadastrar</button>
+
+                    </div>
+                    
+                
+
+                    
+                </form>
+
+            </div hidden="true" >
+            <div class="col-md-8  mx-auto px-4">
+                <table id="tabela" class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">logradouro</th>
+                            <th scope="col">bairro</th>
+                            <th scope="col">localidade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+</body>
+
+<!--JQuery-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#2').hide();
+        $('#3').hide();
+
+        $("#n1").click(function(){
+            if( $('#1').is(':hidden') ) {
+                $('#2').hide();
+                $('#3').hide();
+                $('#1').show();
+            }
+        });
+        $("#n2").click(function(){
+            
+            if( $('#2').is(':hidden') ) {
+                $('#1').hide();
+                $('#3').hide();
+                $('#2').show();
+            }
+        });
+        $("#n3").click(function(){
+            if( $('#3').is(':hidden') ) {
+                $('#1').hide();
+                $('#2').hide();
+                $('#3').show();
+            }
+        });
+
+
+        $("#cep").focusout(function(){
+            var cep = $("#cep").val();
+
+            var dados = "";
+
+            $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", "", function (resp, status) {
+                    console.log(resp);
+                    
+                    var logradouro = resp.logradouro;
+                    var uf = resp.uf;
+                    var localidade = resp.localidade;
+                   alert(resp.uf);
+
+                    
+                    $('#endereco').val(logradouro);
+                    $('#cidade').val(localidade);
+                    $('#estado').val(uf);
+                
+            });
+
+            
+        });
+
+        $("#salvar").click(function(){
+                var lista = "";
+            $(".obrigatorio").each(function(){
+                    if($(this).val() == ""){
+                        $(this).next("span").text("Este campo é obrigatório!");
+                       lista += "Campo: " + $(this).attr('id')+", é obrigatorio!!!\n";
+
+                    }
+                });
+                alert(lista);
+                var senha = $("input[name=senha]").val();
+                var senha_rep = $("input[name=rep_senha]").val();
+
+                if (senha != senha_rep) {
+                    alert("As senhas são diferentes!");
+                    //leva o cursor ao input "Repetir Senha"
+                    $("input[name=rep_senha]").focus();
+                    //adiciona a borda vermelha "danger"
+                    $("input[name=rep_senha]").addClass("border-danger");
+                    $("input[name=senha]").addClass("border-danger");
+                } else {
+                    //Remove a classe "border-danger" se estiver setada na tag
+                    $("input[name=rep_senha]").removeClass("border-danger");
+                    $("input[name=senha]").removeClass("border-danger");
+                }
+        });
+        
+
+        
+        
+        
+        
+    });
+
+</script>
+
+</html>

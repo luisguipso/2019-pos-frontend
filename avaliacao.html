@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>EXE06</title>
+    <title>Avaliação</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -34,7 +34,7 @@
                               <a class="nav-item nav-link" id="n3" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Experiencia</a>
                             </div>
                     </nav>
-                <form action="">
+                <form >
 
 
                     
@@ -43,6 +43,10 @@
                         <h3>Dados Pessoais</h3>
                         <label for="">Nome:*</label>
                         <input id="nome" type="text" class="form-control obrigatorio"></input>
+                        <span class="text-danger"></span>
+                        <br>
+                        <label for="">Email:*</label>
+                        <input id="email" type="text" class="form-control obrigatorio"></input>
                         <span class="text-danger"></span>
                         <br>
                         <label for="">RG:*</label>
@@ -122,9 +126,9 @@
                 <table id="tabela" class="table">
                     <thead>
                         <tr>
-                            <th scope="col">logradouro</th>
-                            <th scope="col">bairro</th>
-                            <th scope="col">localidade</th>
+                            <th scope="col">Nome:</th>
+                            <th scope="col">Email:</th>
+                            <th scope="col">Cidade:</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -170,19 +174,33 @@
             }
         });
 
+        $("#mostrar").click(function () {
+                var tipo = $("#senha").attr("type");
+                if (tipo == "text") {
+                    $("#senha").attr("type", "password");
+                    $("#rep_senha").attr("type", "password");
+                    $(this).text("Mostrar");
+                } if (tipo == "password") {
+                    $("#senha").attr("type", "text");
+                    $("#rep_senha").attr("type", "text");
+                    $(this).text("Esconder");
+                }
+
+
+            });
 
         $("#cep").focusout(function(){
             var cep = $("#cep").val();
 
             var dados = "";
 
-            $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", "", function (resp, status) {
+            $.getJSON("https://viacep.com.br/ws/"+cep+"/json/?callback=?", "", function (resp, status) {
                     console.log(resp);
                     
                     var logradouro = resp.logradouro;
                     var uf = resp.uf;
                     var localidade = resp.localidade;
-                   alert(resp.uf);
+                   
 
                     
                     $('#endereco').val(logradouro);
@@ -195,30 +213,49 @@
         });
 
         $("#salvar").click(function(){
-                var lista = "";
+            var lista = "";
+            var campos_ok = true;
+            var senha_ok = true;
             $(".obrigatorio").each(function(){
                     if($(this).val() == ""){
                         $(this).next("span").text("Este campo é obrigatório!");
-                       lista += "Campo: " + $(this).attr('id')+", é obrigatorio!!!\n";
-
+                        lista += "Campo: " + $(this).attr('id')+", é obrigatorio!!!\n";
+                        campos_ok = false;
                     }
-                });
+            });
+            if(!campos_ok)
                 alert(lista);
-                var senha = $("input[name=senha]").val();
-                var senha_rep = $("input[name=rep_senha]").val();
+                
+            var senha = $("input[name=senha]").val();
+            var senha_rep = $("input[name=rep_senha]").val();
+            
 
-                if (senha != senha_rep) {
-                    alert("As senhas são diferentes!");
-                    //leva o cursor ao input "Repetir Senha"
-                    $("input[name=rep_senha]").focus();
-                    //adiciona a borda vermelha "danger"
-                    $("input[name=rep_senha]").addClass("border-danger");
-                    $("input[name=senha]").addClass("border-danger");
-                } else {
-                    //Remove a classe "border-danger" se estiver setada na tag
-                    $("input[name=rep_senha]").removeClass("border-danger");
-                    $("input[name=senha]").removeClass("border-danger");
-                }
+            if (senha != senha_rep) {
+                alert("As senhas são diferentes!");
+                //leva o cursor ao input "Repetir Senha"
+                $("input[name=rep_senha]").focus();
+                //adiciona a borda vermelha "danger"
+                $("input[name=rep_senha]").addClass("border-danger");
+                $("input[name=senha]").addClass("border-danger");
+                senha = false;
+            } else {
+                //Remove a classe "border-danger" se estiver setada na tag
+                $("input[name=rep_senha]").removeClass("border-danger");
+                $("input[name=senha]").removeClass("border-danger");
+            }
+
+            if(senha_ok && campos_ok){
+                var nome = $("#nome").val();
+                        var cidade = $("#cidade").val();
+                        var email= $("#email").val();
+
+                        var newRow = '<tr> <td>' + nome + '</td> <td>' + email + '</td> <td>' + cidade + '</td> </tr>';
+
+                   
+                        $("#tabela").append(newRow);
+                        $('#formulario input').val("");
+            }
+            
         });
         
 
